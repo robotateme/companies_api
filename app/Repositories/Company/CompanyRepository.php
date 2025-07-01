@@ -18,7 +18,7 @@ class CompanyRepository extends AbstractRepository implements CompanyRepositoryI
      * @param int $const
      * @return Collection
      */
-    public function getByRadius(SearchInRadiusDto $dto, int $const = MetricConstEnum::METERS->value): mixed
+    public function getInRadius(SearchInRadiusDto $dto, int $const = MetricConstEnum::METERS->value): mixed
     {
         return $this->searchInAreaQuery($dto->latitude, $dto->longitude, $const)
             ->join('buildings', 'companies.building_id', '=', 'buildings.id')
@@ -32,7 +32,7 @@ class CompanyRepository extends AbstractRepository implements CompanyRepositoryI
      * @param int $const
      * @return mixed
      */
-    public function getByRectangle(SearchInRectangleDto $dto, int $const = MetricConstEnum::METERS->value): mixed
+    public function getInRectangle(SearchInRectangleDto $dto, int $const = MetricConstEnum::METERS->value): mixed
     {
         $centerLatitude = ($dto->latitude + $dto->oppositeLatitude) / 2;
         $centerLongitude = ($dto->oppositeLongitude + $dto->oppositeLongitude) / 2;
@@ -53,9 +53,10 @@ class CompanyRepository extends AbstractRepository implements CompanyRepositoryI
 
 
     /**
+     * @param string $query
      * @return mixed
      */
-    public function searchByActivityTitle($query): mixed
+    public function searchByActivityTitle(string $query): mixed
     {
         $query = Activity::whereLike('title', "$query%")
             ->unionAll(
