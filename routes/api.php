@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Company\AreaSearchController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+Route::prefix('v1/company')->group(function () {
+    Route::post('/search/area/rectangle', [AreaSearchController::class, 'searchInRectangle']);
+    Route::post('/search/area/radius', [AreaSearchController::class, 'searchInArea']);
+});

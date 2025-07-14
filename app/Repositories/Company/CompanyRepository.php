@@ -29,15 +29,14 @@ class CompanyRepository extends AbstractRepository implements CompanyRepositoryI
 
     /**
      * @param SearchInRectangleDto $dto
-     * @param int $const
-     * @return mixed
+     * @return array
      */
-    public function getInRectangle(SearchInRectangleDto $dto, int $const = MetricConstEnum::METERS->value): mixed
+    public function getInRectangle(SearchInRectangleDto $dto): array
     {
         $centerLatitude = ($dto->latitude + $dto->oppositeLatitude) / 2;
         $centerLongitude = ($dto->oppositeLongitude + $dto->oppositeLongitude) / 2;
 
-        return $this->searchInAreaQuery($centerLatitude, $centerLongitude, $const)
+        return $this->searchInAreaQuery($centerLatitude, $centerLongitude, MetricConstEnum::METERS->value)
             ->join('buildings', 'companies.building_id', '=', 'buildings.id')
             ->addSelect('buildings.latitude', 'buildings.longitude', 'buildings.address', 'companies.*')
             ->where(function (Builder $builder) use ($dto) {
@@ -48,15 +47,16 @@ class CompanyRepository extends AbstractRepository implements CompanyRepositoryI
                 $builder->where('buildings.longitude', '>=', $dto->longitude);
                 $builder->where('buildings.longitude', '<=', $dto->oppositeLongitude);
             })
-            ->get();
+            ->get()
+            ->toArray();
     }
 
 
     /**
      * @param string $query
-     * @return mixed
+     * @return array
      */
-    public function searchByActivityTitle(string $query): mixed
+    public function searchByActivityTitle(string $query): array
     {
         $query = Activity::whereLike('title', "$query%")
             ->unionAll(
@@ -95,9 +95,9 @@ class CompanyRepository extends AbstractRepository implements CompanyRepositoryI
 
     /**
      * @param int $activityId
-     * @return mixed
+     * @return array
      */
-    public function getByActivity(int $activityId): mixed
+    public function getByActivity(int $activityId): array
     {
         return $this->getBuilder()
             ->select('companies.*')
@@ -109,9 +109,9 @@ class CompanyRepository extends AbstractRepository implements CompanyRepositoryI
 
     /**
      * @param int $companyId
-     * @return mixed
+     * @return array
      */
-    public function getOne(int $companyId): mixed
+    public function getOne(int $companyId): array
     {
         return $this->getBuilder()->find($companyId)
             ->first()
@@ -120,24 +120,26 @@ class CompanyRepository extends AbstractRepository implements CompanyRepositoryI
 
     /**
      * @param int $buildingId
-     * @return mixed
+     * @return array
      */
-    public function getByBuilding(int $buildingId): mixed
+    public function getByBuilding(int $buildingId): array
     {
         return $this->getBuilder()
             ->where('building_id', '=', $buildingId)
-            ->get();
+            ->get()
+            ->toArray();
     }
 
 
     /**
      * @param int $companyName
-     * @return mixed
+     * @return array
      */
-    public function searchByName(int $companyName): mixed
+    public function searchByName(int $companyName): array
     {
         return $this->getBuilder()
             ->whereLike('title', "$companyName%")
-            ->get();
+            ->get()
+            ->toArray();
     }
 }

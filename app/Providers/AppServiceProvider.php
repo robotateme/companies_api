@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Services\Company\Contracts\RadiusSearchScenarioInterface;
+use App\Services\Company\Contracts\RectangleSearchScenarioInterface;
+use App\Services\Company\Scenarios\RadiusSearchScenario;
+use App\Services\Company\Scenarios\RectangleSearchScenario;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +15,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(RectangleSearchScenarioInterface::class, RectangleSearchScenario::class);
+        $this->app->bind(RadiusSearchScenarioInterface::class, RadiusSearchScenario::class);
     }
 
     /**
