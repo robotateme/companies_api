@@ -11,7 +11,7 @@ use App\Services\Company\Scenarios\RadiusSearchScenario;
 use App\Services\Company\Scenarios\RectangleSearchScenario;
 use Illuminate\Http\JsonResponse;
 
-class AreaSearchController extends Controller
+class SearchController extends Controller
 {
     public function __construct(
         private readonly RectangleSearchScenario $rectangleSearchScenario,
