@@ -14,7 +14,7 @@ class SearchInRadiusRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -28,7 +28,7 @@ class SearchInRadiusRequest extends FormRequest
             'latitude' => ['required', 'numeric', 'min:-90', 'max:90'],
             'longitude' => ['required', 'numeric', 'min:-180', 'max:180'],
             'distance' => ['required', 'numeric'],
-            'metric' => [Rule::in(MetricAbbrEnum::class)],
+            'metric' => ['string', Rule::enum(MetricAbbrEnum::class)],
         ];
     }
 }

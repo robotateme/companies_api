@@ -27,9 +27,9 @@ class SearchCompanyInAreaRepository extends AbstractSearchCompanyInArea
 
     /**
      * @param SearchInRectangleDto $dto
-     * @return array
+     * @return iterable
      */
-    public function searchInRectangle(SearchInRectangleDto $dto): array
+    public function searchInRectangle(SearchInRectangleDto $dto): iterable
     {
         $centerLatitude = ($dto->latitude + $dto->oppositeLatitude) / 2;
         $centerLongitude = ($dto->oppositeLongitude + $dto->oppositeLongitude) / 2;

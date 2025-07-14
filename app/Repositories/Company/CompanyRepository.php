@@ -24,9 +24,9 @@ class CompanyRepository extends AbstractRepository implements CompanyRepositoryI
 
     /**
      * @param int $buildingId
-     * @return array
+     * @return iterable
      */
-    public function getByBuilding(int $buildingId): array
+    public function getByBuilding(int $buildingId): iterable
     {
         return $this->getBuilder()
             ->where('building_id', '=', $buildingId)

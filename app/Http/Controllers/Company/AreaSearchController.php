@@ -42,7 +42,7 @@ class AreaSearchController extends Controller
      * @return JsonResponse
      * For Testing
      * 44.604010, 33.483109
-     * 150m
+     * 200m
      */
     public function searchInRadius(SearchInRadiusRequest $request): JsonResponse
     {
