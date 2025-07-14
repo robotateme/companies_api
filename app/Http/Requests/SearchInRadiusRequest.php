@@ -2,8 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\MetricAbbrEnum;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SearchInRadiusRequest extends FormRequest
 {
@@ -23,7 +25,10 @@ class SearchInRadiusRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'latitude' => ['required', 'numeric', 'min:-90', 'max:90'],
+            'longitude' => ['required', 'numeric', 'min:-180', 'max:180'],
+            'distance' => ['required', 'numeric'],
+            'metric' => [Rule::in(MetricAbbrEnum::class)],
         ];
     }
 }

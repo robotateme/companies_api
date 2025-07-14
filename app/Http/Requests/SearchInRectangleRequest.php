@@ -12,7 +12,7 @@ class SearchInRectangleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,10 @@ class SearchInRectangleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'latitude' => ['required', 'numeric', 'min:-90', 'max:90'],
+            'opposite_latitude' => ['required', 'numeric', 'min:-90', 'max:90'],
+            'longitude' => ['required', 'numeric', 'min:-180', 'max:180'],
+            'opposite_longitude' => ['required', 'numeric', 'min:-180', 'max:180'],
         ];
     }
 }

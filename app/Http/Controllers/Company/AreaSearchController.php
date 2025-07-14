@@ -23,9 +23,14 @@ class AreaSearchController extends Controller
     /**
      * @param SearchInRectangleRequest $request
      * @return JsonResponse
+     *
+     * For testing
+     * 44.604010, 33.483109
+     * 44.600285, 33.489828
      */
     public function searchInRectangle(SearchInRectangleRequest $request): JsonResponse
     {
+        $dto = SearchInRectangleDto::from($request->validated());
         return new JsonResponse([
             'data' => $this->rectangleSearchScenario->handle($dto)
         ]);
@@ -35,6 +40,9 @@ class AreaSearchController extends Controller
     /**
      * @param SearchInRadiusRequest $request
      * @return JsonResponse
+     * For Testing
+     * 44.604010, 33.483109
+     * 150m
      */
     public function searchInRadius(SearchInRadiusRequest $request): JsonResponse
     {

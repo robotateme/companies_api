@@ -1,0 +1,10 @@
+parameters:
+    paths:
+        - app
+    level: 4
+    reportUnmatchedIgnoredErrors: false
+    inferPrivatePropertyTypeFromConstructor: true
+    excludePaths:
+        - %currentWorkingDirectory%/app/Providers/*
+    ignoreErrors:
+

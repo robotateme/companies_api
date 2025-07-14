@@ -20,4 +20,15 @@ abstract class AbstractRepository
     {
         return $this->model->newModelQuery();
     }
+
+    /**
+     * @param int $id
+     * @return iterable
+     */
+    public function getOne(int $id): iterable
+    {
+        return $this->getBuilder()->find($id)
+            ->first()
+            ->toArray();
+    }
 }

@@ -3,27 +3,26 @@
 namespace App\Services\Company\Scenarios;
 
 use App\DTOs\Company\SearchInRadiusDto;
-use App\Repositories\Company\CompanyRepository;
-use App\Repositories\Company\CompanyRepositoryInterface;
+use App\Repositories\Company\Contracts\AbstractSearchCompanyInArea;
+use App\Repositories\Company\SearchCompanyInAreaRepository;
 use App\Services\Company\Contracts\RadiusSearchScenarioInterface;
-use Illuminate\Contracts\Support\Arrayable;
 
 readonly class RadiusSearchScenario implements RadiusSearchScenarioInterface
 {
 
     /**
-     * @param CompanyRepository $companyRepository
+     * @param SearchCompanyInAreaRepository $companyRepository
      */
     public function __construct(
-        private CompanyRepositoryInterface $companyRepository)
+        private AbstractSearchCompanyInArea $companyRepository)
     {}
 
     /**
      * @param SearchInRadiusDto $dto
-     * @return Arrayable|array
+     * @return iterable
      */
-    public function handle(SearchInRadiusDto $dto): Arrayable|array
+    public function handle(SearchInRadiusDto $dto): iterable
     {
-        return $this->companyRepository->getInRadius($dto);
+        return $this->companyRepository->searchInRadius($dto);
     }
 }

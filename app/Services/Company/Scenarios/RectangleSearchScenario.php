@@ -3,23 +3,26 @@
 namespace App\Services\Company\Scenarios;
 
 use App\DTOs\Company\SearchInRectangleDto;
-use App\Repositories\Company\CompanyRepository;
-use App\Repositories\Company\CompanyRepositoryInterface;
+use App\Repositories\Company\Contracts\AbstractSearchCompanyInArea;
+use App\Repositories\Company\SearchCompanyInAreaRepository;
 use App\Services\Company\Contracts\RectangleSearchScenarioInterface;
-use Illuminate\Contracts\Support\Arrayable;
 
 readonly class RectangleSearchScenario implements RectangleSearchScenarioInterface
 {
 
     /**
-     * @param CompanyRepository $companyRepository
+     * @param SearchCompanyInAreaRepository $companyRepository
      */
     public function __construct(
-        private CompanyRepositoryInterface $companyRepository)
+        private AbstractSearchCompanyInArea $companyRepository)
     {}
 
-    public function handle(SearchInRectangleDto $dto) : Arrayable|array
+    /**
+     * @param SearchInRectangleDto $dto
+     * @return iterable
+     */
+    public function handle(SearchInRectangleDto $dto) : iterable
     {
-        return $this->companyRepository->getInRectangle($dto);
+        return $this->companyRepository->searchInRectangle($dto);
     }
 }
