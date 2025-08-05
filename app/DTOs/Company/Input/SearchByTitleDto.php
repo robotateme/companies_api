@@ -17,7 +17,7 @@ use Spatie\LaravelData\Data;
 class SearchByTitleDto extends Data
 {
     /**
-     * @var string
+     * @var string $query
      * @OA\Property (format="string", title="query", property="query", example="Гагарина")
      */
     public string $query;

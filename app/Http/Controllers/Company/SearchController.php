@@ -44,7 +44,16 @@ class SearchController extends Controller
      *      ),
      *     @OA\Response(
      *         response=200,
-     *         description="OK"
+     *         description="OK",
+     *                  @OA\JsonContent(
+     *                 type="array",
+     *                 @OA\Items(
+     *                     @OA\Property(
+     *                         property="data",
+     *                         ref="#/components/schemas/CompanyInAreaResult",
+     *                     ),
+     *                 )
+     *             )
      *     ),
      *     security={{"bearerAuth":{}}},
      * )
@@ -75,7 +84,16 @@ class SearchController extends Controller
      *      ),
      *     @OA\Response(
      *         response=200,
-     *         description="OK"
+     *         description="OK",
+     *         @OA\JsonContent(
+     *                type="array",
+     *                @OA\Items(
+     *                    @OA\Property(
+     *                        property="data",
+     *                        ref="#/components/schemas/CompanyInAreaResult",
+     *                    ),
+     *                )
+     *            )
      *     ),
      *     security={{"bearerAuth":{}}},
      * )
@@ -104,7 +122,16 @@ class SearchController extends Controller
      *       ),
      *      @OA\Response(
      *          response=200,
-     *          description="OK"
+     *          description="OK",
+     *          @OA\JsonContent(
+     *                 type="array",
+     *                 @OA\Items(
+     *                     @OA\Property(
+     *                         property="data",
+     *                         ref="#/components/schemas/CompanyActivityResult",
+     *                     ),
+     *                 )
+     *             )
      *      ),
      *     security={{"bearerAuth":{}}},
      *  )
@@ -134,7 +161,17 @@ class SearchController extends Controller
      *       ),
      *      @OA\Response(
      *          response=200,
-     *          description="OK"
+     *          description="OK",
+     *          @OA\JsonContent(
+     *                 type="array",
+     *                 @OA\Items(
+     *                     @OA\Property(
+     *                         property="data",
+     *                         ref="#/components/schemas/CompanyByTitle",
+     *                     ),
+     *                 )
+     *             )
+     *          ),
      *      ),
      *     security={{"bearerAuth":{}}},
      *  )

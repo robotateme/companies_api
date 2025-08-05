@@ -32,10 +32,23 @@ class CompanyController extends Controller
      *         required=true,
      *         @OA\Schema(
      *             type="integer",
-     *              example="1"
+     *             example="1"
      *         ),
      *     ),
-     *     @OA\Response(response="200", description="Положительный ответ на запрос",),
+     *     @OA\Response(
+     *          response="200",
+     *          description="Положительный ответ на запрос",
+     *          @OA\JsonContent(
+     *               type="array",
+     *               @OA\Items(
+     *                   @OA\Property(
+     *                       property="data",
+     *                       ref="#/components/schemas/CompanyResult",
+     *                   ),
+     *               )
+     *           )
+     *      ),
+     *     ),
      *     security={{"bearerAuth":{}}},
      * )
      *
@@ -64,7 +77,19 @@ class CompanyController extends Controller
      *              example="1"
      *         ),
      *     ),
-     *     @OA\Response(response="200", description="Положительный ответ на запрос",),
+     *     @OA\Response(
+     *          response="200",
+     *          description="Положительный ответ на запрос",
+     *          @OA\JsonContent(
+     *              type="array",
+     *              @OA\Items(
+     *                  @OA\Property(
+     *                      property="data",
+     *                      ref="#/components/schemas/CompanyResult",
+     *                  ),
+     *              )
+     *          )
+     *     ),
      *     security={{"bearerAuth":{}}},
      * )
      *

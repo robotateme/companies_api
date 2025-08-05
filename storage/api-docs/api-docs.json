@@ -34,14 +34,24 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Положительный ответ на запрос"
+                        "description": "Положительный ответ на запрос",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "data": {
+                                                "$ref": "#/components/schemas/CompanyResult"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
                     }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
+                }
             }
         },
         "/api/company/building/{id}": {
@@ -65,7 +75,22 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Положительный ответ на запрос"
+                        "description": "Положительный ответ на запрос",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "data": {
+                                                "$ref": "#/components/schemas/CompanyResult"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
                     }
                 },
                 "security": [
@@ -94,7 +119,22 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "data": {
+                                                "$ref": "#/components/schemas/CompanyInAreaResult"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
                     }
                 },
                 "security": [
@@ -123,7 +163,22 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "data": {
+                                                "$ref": "#/components/schemas/CompanyInAreaResult"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
                     }
                 },
                 "security": [
@@ -152,7 +207,22 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "data": {
+                                                "$ref": "#/components/schemas/CompanyActivityResult"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
                     }
                 },
                 "security": [
@@ -181,14 +251,24 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "data": {
+                                                "$ref": "#/components/schemas/CompanyByTitle"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
                     }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
+                }
             }
         },
         "/api/register": {
@@ -280,6 +360,7 @@
                 "properties": {
                     "query": {
                         "title": "query",
+                        "description": "$query",
                         "type": "string",
                         "format": "string",
                         "example": "Гагарина"
@@ -365,6 +446,167 @@
                         "type": "number",
                         "format": "float",
                         "example": "33.489828"
+                    }
+                },
+                "type": "object"
+            },
+            "CompanyResult": {
+                "title": "Companies result",
+                "description": "Результат выборки",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "$id",
+                        "type": "integer",
+                        "format": "integer",
+                        "example": "1"
+                    },
+                    "title": {
+                        "title": "title",
+                        "description": "$title",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Company name"
+                    },
+                    "phones": {
+                        "title": "phones",
+                        "description": "$phones",
+                        "type": "string",
+                        "format": "string",
+                        "example": "+78786661313"
+                    },
+                    "address": {
+                        "title": "address",
+                        "description": "$address",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Test street 33 778888"
+                    }
+                },
+                "type": "object"
+            },
+            "CompanyActivityResult": {
+                "title": "Companies by activity title result",
+                "description": "Результат выборки",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "$id",
+                        "type": "integer",
+                        "format": "integer",
+                        "example": "1"
+                    },
+                    "activity": {
+                        "title": "activity",
+                        "description": "$activity",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Activity name"
+                    },
+                    "company": {
+                        "title": "company",
+                        "description": "$company",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Company name"
+                    }
+                },
+                "type": "object"
+            },
+            "CompanyByTitle": {
+                "title": "Companies result",
+                "description": "Результат поиска по названию",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "$id",
+                        "type": "integer",
+                        "format": "integer",
+                        "example": "1"
+                    },
+                    "title": {
+                        "title": "title",
+                        "description": "$title",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Company name"
+                    },
+                    "address": {
+                        "title": "address",
+                        "description": "$address",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Test street 33 778888"
+                    },
+                    "phones": {
+                        "title": "phones",
+                        "description": "$phones",
+                        "type": "string",
+                        "format": "string",
+                        "example": "+78786661313"
+                    }
+                },
+                "type": "object"
+            },
+            "CompanyInAreaResult": {
+                "title": "Companies result",
+                "description": "Результат поиска по площадям",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "$id",
+                        "type": "integer",
+                        "format": "integer",
+                        "example": "1"
+                    },
+                    "title": {
+                        "title": "title",
+                        "description": "$title",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Продуктовый магазин на Гавена 20А"
+                    },
+                    "address": {
+                        "title": "address",
+                        "description": "$address",
+                        "type": "string",
+                        "format": "string",
+                        "example": "улица Гавена, 20А, Севастополь 299028"
+                    },
+                    "phones": {
+                        "title": "phones",
+                        "description": "$phones",
+                        "type": "string",
+                        "format": "string",
+                        "example": "+496138009915"
+                    },
+                    "latitude": {
+                        "title": "latitude",
+                        "description": "$latitude",
+                        "type": "number",
+                        "format": "float",
+                        "example": "44.604392"
+                    },
+                    "longitude": {
+                        "title": "longitude",
+                        "description": "$longitude",
+                        "type": "number",
+                        "format": "float",
+                        "example": "33.484801"
+                    },
+                    "distance": {
+                        "title": "distance",
+                        "description": "$distance",
+                        "type": "number",
+                        "format": "float",
+                        "example": "140.52556774327596"
+                    },
+                    "createdAt": {
+                        "title": "createdAt",
+                        "description": "$createdAt",
+                        "type": "string",
+                        "format": "float",
+                        "example": "05-08-2025 22:52:27"
                     }
                 },
                 "type": "object"
