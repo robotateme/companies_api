@@ -2,11 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Company;
 use Faker\Provider\ru_RU\PhoneNumber;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Company>
+ * @extends Factory<Company>
  */
 class CompanyFactory extends Factory
 {
@@ -19,7 +20,7 @@ class CompanyFactory extends Factory
     {
         $this->faker->addProvider(new PhoneNumber($this->faker));
         return [
-            'phone' => $this->faker->unique()->e164PhoneNumber(),
+            'phones' => $this->faker->unique()->e164PhoneNumber(),
         ];
     }
 }

@@ -2,7 +2,8 @@
 
 namespace App\Services\Company\Scenarios;
 
-use App\DTOs\Company\SearchInRectangleDto;
+use App\DTOs\Company\Input\SearchInRectangleDto;
+use App\DTOs\Company\Output\SearchInAreaResultDto;
 use App\Repositories\Company\Contracts\AbstractSearchCompanyInArea;
 use App\Repositories\Company\SearchCompanyInAreaRepository;
 use App\Services\Company\Contracts\RectangleSearchScenarioInterface;
@@ -23,6 +24,7 @@ readonly class RectangleSearchScenario implements RectangleSearchScenarioInterfa
      */
     public function handle(SearchInRectangleDto $dto) : iterable
     {
-        return $this->companyRepository->searchInRectangle($dto);
+        $resultData = $this->companyRepository->searchInRectangle($dto);
+        return SearchInAreaResultDto::collect($resultData);
     }
 }

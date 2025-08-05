@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->string("title")->unique();
-            $table->string("phone")->unique();
+            $table->string("phones")->unique();
             $table->foreignIdFor(Building::class)->nullable();
             $table->softDeletes();
             $table->timestamps();

@@ -2,7 +2,8 @@
 
 namespace App\Services\Company\Scenarios;
 
-use App\DTOs\Company\SearchInRadiusDto;
+use App\DTOs\Company\Input\SearchInRadiusDto;
+use App\DTOs\Company\Output\SearchInAreaResultDto;
 use App\Repositories\Company\Contracts\AbstractSearchCompanyInArea;
 use App\Repositories\Company\SearchCompanyInAreaRepository;
 use App\Services\Company\Contracts\RadiusSearchScenarioInterface;
@@ -23,6 +24,7 @@ readonly class RadiusSearchScenario implements RadiusSearchScenarioInterface
      */
     public function handle(SearchInRadiusDto $dto): iterable
     {
-        return $this->companyRepository->searchInRadius($dto);
+        $resultData = $this->companyRepository->searchInRadius($dto);
+        return SearchInAreaResultDto::collect($resultData);
     }
 }

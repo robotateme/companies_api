@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Activity;
-use App\Repositories\Company\CompanyRepository;
+use App\DTOs\User\Input\UserRegistrationDto;
+use App\Repositories\User\UserRepository;
 use Illuminate\Console\Command;
 
 class TestingCommand extends Command
@@ -22,7 +22,7 @@ class TestingCommand extends Command
      */
     protected $description = 'Command description';
 
-    public function __construct(private readonly CompanyRepository $companyRepository)
+    public function __construct(private readonly UserRepository $userRepository)
     {
         parent::__construct();
     }
@@ -32,6 +32,12 @@ class TestingCommand extends Command
      */
     public function handle(): void
     {
-        dd($this->companyRepository->searchByActivityTitle('З'));
+        $dto = UserRegistrationDto::from([
+            'name' => 'John Doe',
+            'email' => fake()->safeEmail(),
+            'password' => 'password',
+        ])->hashPassword();
+
+        dd($this->userRepository->createUser($dto));
     }
 }

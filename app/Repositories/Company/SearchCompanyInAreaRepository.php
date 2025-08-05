@@ -2,8 +2,8 @@
 
 namespace App\Repositories\Company;
 
-use App\DTOs\Company\SearchInRadiusDto;
-use App\DTOs\Company\SearchInRectangleDto;
+use App\DTOs\Company\Input\SearchInRadiusDto;
+use App\DTOs\Company\Input\SearchInRectangleDto;
 use App\Enums\MetricConstEnum;
 use App\Repositories\Company\Contracts\AbstractSearchCompanyInArea;
 use Illuminate\Database\Eloquent\Builder;
@@ -21,8 +21,7 @@ class SearchCompanyInAreaRepository extends AbstractSearchCompanyInArea
             ->join('buildings', 'companies.building_id', '=', 'buildings.id')
             ->addSelect('buildings.latitude', 'buildings.longitude', 'buildings.address', 'companies.*')
             ->having('distance', '<=', $dto->distance)
-            ->get()
-            ->toArray();
+            ->get();
     }
 
     /**
@@ -45,7 +44,6 @@ class SearchCompanyInAreaRepository extends AbstractSearchCompanyInArea
                 $builder->where('buildings.longitude', '>=', $dto->longitude);
                 $builder->where('buildings.longitude', '<=', $dto->oppositeLongitude);
             })
-            ->get()
-            ->toArray();
+            ->get();
     }
 }

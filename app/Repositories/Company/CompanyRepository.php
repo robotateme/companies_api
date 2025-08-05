@@ -16,7 +16,9 @@ class CompanyRepository extends AbstractRepository implements CompanyRepositoryI
     {
         return $this->getBuilder()
             ->select('companies.*')
+            ->addSelect('buildings.address')
             ->join('company_activity', 'companies.id', '=', 'company_activity.company_id')
+            ->join('buildings', 'buildings.id', '=', 'companies.building_id')
             ->where('company_activity.id', $activityId)
             ->get()
             ->toArray();
@@ -30,6 +32,7 @@ class CompanyRepository extends AbstractRepository implements CompanyRepositoryI
     {
         return $this->getBuilder()
             ->where('building_id', '=', $buildingId)
+            ->join('buildings', 'buildings.id', '=', 'companies.building_id')
             ->get()
             ->toArray();
     }

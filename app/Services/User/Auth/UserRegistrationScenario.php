@@ -2,11 +2,13 @@
 
 namespace App\Services\User\Auth;
 
-use App\DTOs\User\UserRegistrationDto;
+use App\DTOs\User\Input\UserRegistrationDto;
+use App\Models\User;
+use App\Repositories\User\UserRepository;
 
 class UserRegistrationScenario
 {
-    public function __construct(private UserRegistrationDto $userRegistrationDto)
+    public function __construct(private UserRepository $userRepository)
     {
     }
 
@@ -16,6 +18,7 @@ class UserRegistrationScenario
      */
     public function handle(UserRegistrationDto $dto): iterable
     {
-        return [];
+        /** @var User $user */
+        return $this->userRepository->createUser($dto);
     }
 }
