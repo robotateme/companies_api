@@ -1,0 +1,429 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laravel OpenApi Demo Documentation",
+        "description": "L5 Swagger OpenApi description",
+        "contact": {
+            "email": "jarwork884@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/company/activity/{id}": {
+            "get": {
+                "tags": [
+                    "Companies"
+                ],
+                "summary": "Список компаний по роду деятельности",
+                "operationId": "b209a04d6ad366fbc1f43df8956b86d9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "activity ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Положительный ответ на запрос"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/company/building/{id}": {
+            "get": {
+                "tags": [
+                    "Companies"
+                ],
+                "summary": "Список компаний по роду деятельности",
+                "operationId": "2bf21b81bf151187840a5838a6e92ddd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "building ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Положительный ответ на запрос"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/company/search/area/rectangle": {
+            "post": {
+                "tags": [
+                    "Companies search"
+                ],
+                "summary": "Search companies in rectangle",
+                "operationId": "0028969d386a999c46fdcd10224229c4",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SearchInRectangle"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/company/search/area/radius": {
+            "post": {
+                "tags": [
+                    "Companies search"
+                ],
+                "summary": "Search companies in radius",
+                "operationId": "fb9bcd3cfff0e4ff055c4a15db9daeca",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SearchInRadius"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/company/search/activity/title": {
+            "post": {
+                "tags": [
+                    "Companies search"
+                ],
+                "summary": "Search companies by activity title",
+                "operationId": "cbb28223c9a08032ed24a56aca4d807f",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SearchByActivityTitle"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/company/search/title": {
+            "post": {
+                "tags": [
+                    "Companies search"
+                ],
+                "summary": "Search companies by title",
+                "operationId": "1c81814978d3908f9967dd18718161a9",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SearchByTitle"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Authetication"
+                ],
+                "summary": "User registtration",
+                "operationId": "05bf25cff6526d58818f36cc41d3ce65",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserRegister"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Authetication"
+                ],
+                "summary": "User login",
+                "operationId": "c54022df2917d90ae55652ee33ccf2b9",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "title": "email",
+                                        "format": "string",
+                                        "example": "test@example.com"
+                                    },
+                                    "password": {
+                                        "title": "password",
+                                        "format": "string",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "SearchByActivityTitle": {
+                "title": "Search companies by activity title (recursive)",
+                "description": "Поиск по имени рода деятеольности, рекурсивно",
+                "required": [
+                    "query"
+                ],
+                "properties": {
+                    "query": {
+                        "title": "query",
+                        "description": "$query",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Еда"
+                    }
+                },
+                "type": "object"
+            },
+            "SearchByTitle": {
+                "title": "Search companies by title",
+                "description": "Поиск по имени",
+                "required": [
+                    "query"
+                ],
+                "properties": {
+                    "query": {
+                        "title": "query",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Гагарина"
+                    }
+                },
+                "type": "object"
+            },
+            "SearchInRadius": {
+                "title": "Search companies in radius data",
+                "description": "Данные для поиска компаний по карте в радусе",
+                "required": [
+                    "latitude",
+                    "longitude",
+                    "distance",
+                    "metric"
+                ],
+                "properties": {
+                    "latitude": {
+                        "title": "latitude",
+                        "description": "$latitude",
+                        "type": "number",
+                        "format": "float",
+                        "example": "44.604010"
+                    },
+                    "longitude": {
+                        "title": "longitude",
+                        "description": "$longitude",
+                        "type": "number",
+                        "format": "float",
+                        "example": "33.483109"
+                    },
+                    "distance": {
+                        "title": "distance",
+                        "description": "$distance",
+                        "type": "integer",
+                        "format": "integer",
+                        "example": "200"
+                    },
+                    "metric": {
+                        "title": "metric",
+                        "description": "$metricUnit",
+                        "type": "string",
+                        "format": "string",
+                        "example": "m"
+                    }
+                },
+                "type": "object"
+            },
+            "SearchInRectangle": {
+                "title": "Search companies in rectangle data",
+                "description": "Данные для поиска компаний по карте в прямоугольнике/квадрате",
+                "required": [
+                    "latitude",
+                    "longitude",
+                    "oppositeLatitude",
+                    "oppositeLatitude"
+                ],
+                "properties": {
+                    "latitude": {
+                        "title": "latitude",
+                        "description": "$latitude",
+                        "type": "number",
+                        "format": "float",
+                        "example": "44.604010"
+                    },
+                    "longitude": {
+                        "title": "longitude",
+                        "description": "$longitude",
+                        "type": "number",
+                        "format": "float",
+                        "example": "33.483109"
+                    },
+                    "opposite_latitude": {
+                        "title": "opposite_latitude",
+                        "description": "$oppositeLatitude",
+                        "type": "number",
+                        "format": "float",
+                        "example": "44.600285"
+                    },
+                    "opposite_longitude": {
+                        "title": "opposite_longitude",
+                        "description": "$oppositeLongitude",
+                        "type": "number",
+                        "format": "float",
+                        "example": "33.489828"
+                    }
+                },
+                "type": "object"
+            },
+            "UserRegister": {
+                "title": "User registtration",
+                "description": "Регистрация пользователя",
+                "required": [
+                    "name",
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "$name",
+                        "type": "string",
+                        "format": "string",
+                        "example": "John Doe"
+                    },
+                    "email": {
+                        "title": "email",
+                        "description": "$emqil",
+                        "type": "string",
+                        "format": "string",
+                        "example": "test@example.com"
+                    },
+                    "password": {
+                        "title": "password",
+                        "description": "$password",
+                        "type": "string",
+                        "format": "string",
+                        "example": "password"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "Bearer Authentication",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Companies",
+            "description": "Companies"
+        },
+        {
+            "name": "Companies search",
+            "description": "Companies search"
+        },
+        {
+            "name": "Authetication",
+            "description": "Authetication"
+        }
+    ]
+}
